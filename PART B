@@ -1,0 +1,99 @@
+Task B1
+
+/*pseudocode for selectionSort*/
+START 
+GET array length n
+comparisons = 0
+swaps = 0
+
+FOR i = 0 to n-2
+ minimumIndex = i
+
+FOR j = i + 1 TO n - 1
+comparisons = comparisons + 1
+IF arr[j] < arr[minimumIndex] THEN minimumIndex = j
+ENDIF
+ENDFOR
+
+IF minimumIndex != i THRN 
+temp = arr[i] 
+arr[i] = arr[minimumIndex]
+arr[minimumIndex] = temp
+swaps = swaps + 1
+ENDIF
+
+IF i < 3 THRN 
+DISPLAY "After pas" + (i + 1) + ": " 
+printArray(arr)
+ENDIF
+ENDFOR
+
+DISPLAY "Total comparisons: " + comparisons
+DISPLAY "Total swaps: " + swaps
+END
+
+printArray(arr)
+FOR EACH val IN arr
+DISPLAY val
+ENDFOR
+DISPALY newline
+ENDPROCEDURE
+END
+
+class Main { 
+  public static void selectionSort (int[] arr) {
+int n = arr.length;
+int comparisons = 0;
+int swaps = 0;
+
+for (int i = 0; i < n - 1; i++) {
+//assume the current position holds the minimum element//
+int minimumIndex = i;
+
+//iterate through the unsorted portion to find the actual minimum //
+for (int j = i + 1; j < n; j++) {
+comparisons++;  //count every comparison//
+
+if (arr[j] < arr[minimumIndex]) {
+//update minimumIndex if smaller element is foind//
+
+minimum index = j;
+ }
+}
+//move minimum element to its correct position//
+if (minimumIndex != i ) { //only swap if a smaller element was found//
+
+int temp = arr[i];
+arr[i] = arr[minimumIndex];
+arr[minimumIndex] = temp;
+swaps++;
+}
+//shows array state after pass 1,2, and 3//
+
+if (i < 3) {
+ System.out.print("After passn" + (i + 1) + " ; "
+   printArray(arr);
+      }
+    }
+
+    System.out,println("Total comparisons: " + comparisons);
+    System.out.println("Total swaps: " + swaps);
+    }
+    static void printArray(int[] arr) {
+    for (int val : arr) {
+    System.out.print(val + " ");
+    }
+    System.out.println();
+    } 
+    public static void main ( String[] args) {
+    int[] arr = {17, 5, 23, 8, 14, 3, 11, 20, 6, 9};
+
+    System.out.print("Original array: ");
+    printArray(arr);
+
+    selectionSort(arr);
+
+    System.out.print("Sorted array: ");
+    printArray(arr);
+    }
+    }
