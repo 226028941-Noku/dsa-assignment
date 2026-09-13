@@ -8,7 +8,30 @@ class Node {String studentNumber;
 }
 class LinkedList { 
             Node head;
-void insertAtPosition (Node newNode , int position){
+// Insert a student at the beginning
+void insertAtBeginning(Node newNode) {
+    newNode.next = head;
+    head = newNode;
+}
+
+// Insert a student at the end
+void insertAtEnd(Node newNode) {
+    if (head == null) {
+        head = newNode;
+        return;
+}
+
+    Node current = head;
+
+    while (current.next != null) {
+        current = current.next;
+}
+
+    current.next = newNode;
+}
+
+//inserting at any position
+ void insertAtPosition (Node newNode , int position){
         if (position==1){
         newNode.next=head;
         head=newNode;
