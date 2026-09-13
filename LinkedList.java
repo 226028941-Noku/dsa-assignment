@@ -23,6 +23,7 @@ newNode.next = current.next;
 current.next = newNode;
 } // the inserting part
 
+//Deleting a student
 void deleteStudent(String studentNumber){
          if (head==null){ // this part checks if the list is empty 
 return;
@@ -38,6 +39,34 @@ current=current.next;
 if (current.next==null){
 return;
 }
-current.next=current.next.next}// this one is how you delete
+current.next=current.next.next;
+}// this one is how you delete
 
+//Serching for a student and printing them 
+void searchStudent(String studentNumber){
+Node current = head;
+while (current !=null){
+if (current.studentNumber.equals(studentNumber)){
+System.out.println("Student found");
+return;
+}
+current=current.next;
+}
+System.out.println("Student not found");
+}//if Student is not found
+
+//Displaying all the students
+void displayStudents() {
+    if (head == null) {
+        return;
+    }
+    Node current = head;
+    while (current != null) {
+        System.out.println("Student Number: " + current.studentNumber);
+        System.out.println("Student Name: " + current.studentName);
+        System.out.println("Service Type: " + current.serviceType);
+        System.out.println("Estimated Time: " + current.estimatedTime);
+        current = current.next;
+}
+}
 }
