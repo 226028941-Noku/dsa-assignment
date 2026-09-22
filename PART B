@@ -57,7 +57,7 @@ comparisons++;  //count every comparison//
 if (arr[j] < arr[minimumIndex]) {
 //update minimumIndex if smaller element is foind//
 
-minimum index = j;
+minimumIndex = j;
  }
 }
 //move minimum element to its correct position//
@@ -71,12 +71,12 @@ swaps++;
 //shows array state after pass 1,2, and 3//
 
 if (i < 3) {
- System.out.print("After passn" + (i + 1) + " ; "
+ System.out.print("After passn" + (i + 1) + " : ");
    printArray(arr);
       }
     }
 
-    System.out,println("Total comparisons: " + comparisons);
+    System.out.println("Total comparisons: " + comparisons);
     System.out.println("Total swaps: " + swaps);
     }
     static void printArray(int[] arr) {
@@ -142,6 +142,7 @@ PROCEDURE printArray(arr)
     ENDFOR
     DISPLAY newline
 ENDPROCEDURE
+
 
 public class InsertionSort {
 
@@ -249,19 +250,19 @@ PROCEDURE mergeSort(arr, 1, r)
 
 public class MergeSort {
 
-  static void merge(int arr[], int 1, int m, int r) {
-      int n1 = m - 1 + 1;
+  static void merge(int arr[], int l, int m, int r) {
+      int n1 = m - l + 1;
       int n2 = r - m;
 
       int L[] = new int[n1];
       int R[] = new int[n2];
 
       for (int i = 0; i < n1; i++)
-         L[i] = arr[1 + i];
+         L[i] = arr[l + i];
       for (int j = 0; j < n2; j++)
          R[j] = arr[m + 1 + j];
 
-      int i = 0, j = 0, k = 1;
+      int i = 0, j = 0, k = l;
 
       while (i < n1 && j < n2) {
           if (L[i] <= R[j]) {
@@ -285,12 +286,12 @@ public class MergeSort {
      }
  }
 
-static void mergeSort(int arr[], int 1, int r) {
-     if ( 1 < r) {
-        int m = 1 + (r - 1) / 2;
-        mergeSort(arr, 1, m);
+static void mergeSort(int arr[], int l, int r) {
+     if ( l < r) {
+        int m = (l + r) / 2;
+        mergeSort(arr, l, m);
         mergeSort(arr, m + 1, r);
-        merge(arr, 1, m, r);
+        merge(arr, l, m, r);
      }
    //base case: 1 >= r, subarray has 0 or 1 element, already sorted//
  }
@@ -298,8 +299,7 @@ static void mergeSort(int arr[], int 1, int r) {
  static void printArray(int[] arr) {
      for (int val : arr) {
          System.out.print(val + " ");
-    }
-    System.out.print(val + " ");
+
   }
 
   System.out.println();
