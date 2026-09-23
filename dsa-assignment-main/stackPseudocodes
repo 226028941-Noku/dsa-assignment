@@ -1,0 +1,68 @@
+push(double data):
+    IF top == size - 1 THEN
+        DISPLAY "Stack is full!"
+    ELSE
+        top = top + 1
+        stack[top] = data
+    ENDIF
+
+    pop():
+     double poppedElement
+
+    IF top == -1 THEN
+        DISPLAY "Stack is empty!"
+    ELSE
+        poppedElement = stack[top]
+        top = top - 1
+        RETURN poppedElement
+    ENDIF
+
+    peek():
+    IF top == -1 THEN
+        DISPLAY "Stack is empty!"
+    ELSE
+        RETURN stack[top]
+    ENDIF
+
+    
+    evaluatePostfix():
+    String[] elements
+    ArrayStack stack
+    String element
+    double a
+    double b
+    double result
+
+    elements = split(expression, " ")
+    stack = new ArrayStack(elements.length)
+
+    FOR each element IN elements
+        IF isNumber(element) THEN
+            push(Double.parseDouble(element))
+        ELSE
+            b = pop()          
+            a = pop()         
+            result = apply(a, b, element)
+            push(result)
+            DISPLAY "Top after " + element + ": " + peek()
+        ENDIF
+
+        DISPLAY "Stack after " + element + ": "
+        display()
+    ENDFOR
+
+    RETURN pop()
+
+    apply(double a, double b, String operator) RETURNS double:
+    IF operator == "+" THEN
+        RETURN a + b
+    ELSE IF operator == "-" THEN
+        RETURN a - b
+    ELSE IF operator == "x" OR operator == "*" THEN
+        RETURN a * b
+    ELSE IF operator == "÷" OR operator == "/" THEN
+        RETURN a / b
+    ELSE
+        DISPLAY "Unknown operator: " + operator
+    ENDIF
+    
