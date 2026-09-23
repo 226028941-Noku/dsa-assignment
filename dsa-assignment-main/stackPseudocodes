@@ -53,7 +53,7 @@ push(double data):
 
     RETURN pop()
 
-    apply(double a, double b, String operator) RETURNS double:
+    apply(double a, double b, String operator):
     IF operator == "+" THEN
         RETURN a + b
     ELSE IF operator == "-" THEN
