@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * CampusServiceCentre
  *
@@ -68,7 +66,6 @@ public class CampusServiceCentre {
     private static WaitingLineQueue.StudentQueue waitingQueue = new WaitingLineQueue.StudentQueue(100);
     private static LinkedList serviceRecords = new LinkedList();
     private static ServiceTimeArray servedTimes = new ServiceTimeArray(10);
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         int choice;
@@ -96,8 +93,6 @@ public class CampusServiceCentre {
             System.out.println();
 
         } while (choice != 11);
-
-        scanner.close();
     }
 
     private static void printMenu() {
@@ -125,9 +120,9 @@ public class CampusServiceCentre {
         System.out.println("--- Add Student To Waiting Queue ---");
         int studentNo = readInt("Student number: ");
         System.out.print("Name: ");
-        String name = scanner.nextLine();
+        String name = readLine();
         System.out.print("Service type: ");
-        String serviceType = scanner.nextLine();
+        String serviceType = readLine();
         int estTime = readInt("Estimated service time (min): ");
 
         WaitingLineQueue.Student student =
@@ -156,11 +151,11 @@ public class CampusServiceCentre {
         System.out.println("--- Add Student Service Record ---");
         LinkedList.Node newNode = new LinkedList.Node();
         System.out.print("Student number: ");
-        newNode.studentNumber = scanner.nextLine();
+        newNode.studentNumber = readLine();
         System.out.print("Name: ");
-        newNode.studentName = scanner.nextLine();
+        newNode.studentName = readLine();
         System.out.print("Service type: ");
-        newNode.serviceType = scanner.nextLine();
+        newNode.serviceType = readLine();
         newNode.estimatedTime = readInt("Estimated time (min): ");
 
         System.out.println("Insert where? 1 = beginning, 2 = end, 3 = choose a position");
@@ -186,14 +181,14 @@ public class CampusServiceCentre {
     private static void searchServiceRecord() {
         System.out.println("--- Search Student Record ---");
         System.out.print("Enter student number to search: ");
-        String sn = scanner.nextLine();
+        String sn = readLine();
         serviceRecords.searchStudent(sn);
     }
 
     private static void removeServiceRecord() {
         System.out.println("--- Remove Student Record ---");
         System.out.print("Enter student number to remove: ");
-        String sn = scanner.nextLine();
+        String sn = readLine();
         serviceRecords.deleteStudent(sn);
         System.out.println("If that student number existed, the record has been removed.");
     }
@@ -355,12 +350,28 @@ public class CampusServiceCentre {
     private static int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
-            String line = scanner.nextLine();
+            String line = readLine();
             try {
                 return Integer.parseInt(line.trim());
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a whole number.");
             }
         }
+    }
+
+    private static String readLine() {
+        String line = "";
+        try {
+            int c = System.in.read();
+            while (c != -1 && c != '\n') {
+                if (c != '\r') {
+                    line = line + (char) c;
+                }
+                c = System.in.read();
+            }
+        } catch (Exception e) {
+            return line;
+        }
+        return line;
     }
 }

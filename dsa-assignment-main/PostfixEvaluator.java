@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class PostfixEvaluator {
 
     public static double evaluate(String expression) {
@@ -51,18 +49,30 @@ public class PostfixEvaluator {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
         System.out.println("=== Postfix Expression Evaluator ===");
         System.out.println("Supported operators: +  -  x  *  ÷  /");
         System.out.print("Enter a postfix expression (e.g. 5 3 + 2 *): ");
 
-        String postfix = scanner.nextLine();
+        String postfix = readLine();
 
         System.out.println("\nPostfix expression: " + postfix);
         double result = evaluate(postfix);
         System.out.println("Final result: " + result);
+    }
 
-        scanner.close();
+    private static String readLine() {
+        String line = "";
+        try {
+            int c = System.in.read();
+            while (c != -1 && c != '\n') {
+                if (c != '\r') {
+                    line = line + (char) c;
+                }
+                c = System.in.read();
+            }
+        } catch (Exception e) {
+            return line;
+        }
+        return line;
     }
 }
