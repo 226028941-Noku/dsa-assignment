@@ -1,29 +1,5 @@
-/**
- * CampusServiceCentre
- *
- * PART D — INTEGRATED SERVICE-CENTRE SYSTEM
- *
- * Ties together the components already built in Parts A-C:
- *   Option 1-3  -> WaitingLineQueue.StudentQueue   (Task A1: Queue)
- *   Option 4-7  -> LinkedList / Node                (Task A2: Singly Linked List)
- *   Option 8    -> Array traversal statistics        (Task A4)
- *   Option 9    -> SelectionSort / InsertionSort / MergeSort / QuickSort (Part B)
- *   Option 10   -> Sorting experiment                (Part C)
- *
- * The Postfix Stack task (A3) is intentionally NOT part of this menu,
- * as the brief states it is a separate, stand-alone exercise.
- *
- * No built-in Stack/Queue/LinkedList/sort classes are used anywhere;
- * every structure is the group's own implementation from Parts A-B.
- */
 public class CampusServiceCentre {
 
-    // ---------------------------------------------------------------
-    // A small, self-built resizable array of ints. This is what backs
-    // Task A4 (daily statistics) and the "sort service times" option,
-    // grown manually by doubling -- no ArrayList / built-in collection
-    // is used, so it still satisfies the "Array" requirement.
-    // ---------------------------------------------------------------
     static class ServiceTimeArray {
         private int[] data;
         private int count;
@@ -62,7 +38,6 @@ public class CampusServiceCentre {
         }
     }
 
-    // ---------------- Shared program state ----------------
     private static WaitingLineQueue.StudentQueue waitingQueue = new WaitingLineQueue.StudentQueue(100);
     private static LinkedList serviceRecords = new LinkedList();
     private static ServiceTimeArray servedTimes = new ServiceTimeArray(10);
@@ -112,10 +87,6 @@ public class CampusServiceCentre {
         System.out.println("11. Exit");
     }
 
-    // =================================================================
-    // Options 1-3 : Queue  (Task A1, WaitingLineQueue.java)
-    // =================================================================
-
     private static void addStudentToQueue() {
         System.out.println("--- Add Student To Waiting Queue ---");
         int studentNo = readInt("Student number: ");
@@ -136,16 +107,10 @@ public class CampusServiceCentre {
         if (served != null) {
             System.out.println("Now serving:");
             served.display();
-            // Record the service time so it feeds Option 8 (statistics)
-            // and Option 9 (sorting) -- this is the Queue and Array
-            // components working together.
+
             servedTimes.add(served.getEstimatedServiceTime());
         }
     }
-
-    // =================================================================
-    // Options 4-7 : Singly Linked List  (Task A2, LinkedList.java)
-    // =================================================================
 
     private static void addServiceRecord() {
         System.out.println("--- Add Student Service Record ---");
@@ -193,10 +158,6 @@ public class CampusServiceCentre {
         System.out.println("If that student number existed, the record has been removed.");
     }
 
-    // =================================================================
-    // Option 8 : Array processing  (Task A4 statistics)
-    // =================================================================
-
     private static void displayDailyStatistics() {
         int[] times = servedTimes.toArray();
 
@@ -231,10 +192,6 @@ public class CampusServiceCentre {
         System.out.println("Lowest service time: " + lowest + " minutes");
         System.out.println("Number of services longer than 10 minutes: " + longerThan10);
     }
-
-    // =================================================================
-    // Option 9 : Sort service times  (Part B algorithms)
-    // =================================================================
 
     private static void sortServiceTimes() {
         System.out.println("--- Sort Service Times ---");
@@ -271,10 +228,6 @@ public class CampusServiceCentre {
         System.out.println("Data-value comparisons used: " + comparisons);
     }
 
-    // =================================================================
-    // Option 10 : Sorting experiment  (Part C)
-    // =================================================================
-
     private static void runSortingExperiment() {
         System.out.println("--- Sorting Algorithm Experiment ---");
         int[] sizes = {20, 50, 100, 500};
@@ -289,10 +242,8 @@ public class CampusServiceCentre {
             runOneAlgorithm("Quick Sort", original, 4, size);
         }
 
-        // Almost-sorted test: sort a 100-element array, then swap five
-        // neighbouring pairs, and give every algorithm the same array.
         int[] almostSorted = generateRandomArray(100);
-        SelectionSort.selectionSort(almostSorted); // fully sort it first
+        SelectionSort.selectionSort(almostSorted); 
         for (int p = 0; p < 5; p++) {
             int idx = p * 2;
             int temp = almostSorted[idx];
@@ -334,8 +285,6 @@ public class CampusServiceCentre {
         }
         return arr;
     }
-
-    // ---------------- Small shared helpers ----------------
 
     private static void printArray(int[] arr) {
         StringBuilder sb = new StringBuilder("[");
